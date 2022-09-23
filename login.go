@@ -20,6 +20,9 @@ import (
 // @param req
 // @date 2022-09-22 18:32:55
 func Login(ctx context.Context, conf *Config, id string, req *LoginRequest) (*LoginResponseDataResult, error) {
+	if err := ctx.Err(); err != nil {
+		return nil, err
+	}
 
 	body, err := NewRequest(conf, "1001100058", id, req)
 	if err != nil {
